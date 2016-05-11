@@ -110,4 +110,10 @@ def test(HandlerClass = HTTPRequestHandler,
 
 
 if __name__ == '__main__':
-    test()
+    if len(sys.argv)>=3:
+        port = int(sys.argv[2])
+    else:
+        port = 9099
+    server_address = ("",port)
+    httpd = BaseHTTPServer.HTTPServer(server_address,HTTPRequestHandler)
+    httpd.serve_forever()
